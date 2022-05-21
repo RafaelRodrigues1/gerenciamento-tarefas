@@ -1,5 +1,6 @@
-package br.com.perinity.test.gerenciamentotarefas.exception;
+package br.com.perinity.test.gerenciamentotarefas.exception.handler;
 
+import br.com.perinity.test.gerenciamentotarefas.exception.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
