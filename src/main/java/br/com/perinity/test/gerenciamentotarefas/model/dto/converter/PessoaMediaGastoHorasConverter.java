@@ -2,7 +2,6 @@ package br.com.perinity.test.gerenciamentotarefas.model.dto.converter;
 
 import br.com.perinity.test.gerenciamentotarefas.model.Pessoa;
 import br.com.perinity.test.gerenciamentotarefas.model.dto.response.PessoaMediaGastoHorasResponse;
-import org.hibernate.Hibernate;
 
 public class PessoaMediaGastoHorasConverter implements ConverterResponse<Pessoa, PessoaMediaGastoHorasResponse> {
 

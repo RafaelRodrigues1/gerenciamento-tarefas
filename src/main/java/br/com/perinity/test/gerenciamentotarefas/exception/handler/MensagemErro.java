@@ -1,6 +1,5 @@
-package br.com.perinity.test.gerenciamentotarefas.exception;
+package br.com.perinity.test.gerenciamentotarefas.exception.handler;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;

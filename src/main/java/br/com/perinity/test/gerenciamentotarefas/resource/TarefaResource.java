@@ -1,6 +1,5 @@
 package br.com.perinity.test.gerenciamentotarefas.resource;
 
-import br.com.perinity.test.gerenciamentotarefas.model.Tarefa;
 import br.com.perinity.test.gerenciamentotarefas.model.dto.request.TarefaAdicaoRequest;
 import br.com.perinity.test.gerenciamentotarefas.model.dto.response.TarefaResponse;
 import br.com.perinity.test.gerenciamentotarefas.service.TarefaService;
