@@ -35,4 +35,10 @@ public class TarefaResource {
     public List<TarefaResponse> findTresTarefasSemPessoaAlocadaPrazosAntigos() {
         return this.tarefaService.findTresTarefasSemPessoaAlocadaPrazosAntigos();
     }
+
+    @PutMapping("/alocar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public TarefaResponse alocaPessoaTarefaMesmoDepartamento(@PathVariable("id") Long id) {
+        return this.tarefaService.alocaPessoaTarefaMesmoDepartamento(id);
+    }
 }

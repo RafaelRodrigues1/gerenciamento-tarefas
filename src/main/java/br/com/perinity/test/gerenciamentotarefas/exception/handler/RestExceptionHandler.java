@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
-            = { PessoaNotFoundException.class, TarefaAddException.class, DepartamentoNotFoundException.class })
+            = { PessoaNotFoundException.class, TarefaAddException.class,
+            DepartamentoNotFoundException.class, TarefaNotFoundException.class })
     protected ResponseEntity<Object> handleConflict(
             PersonRestException ex, WebRequest request) {
         MensagemErro mensagemErro = new MensagemErro(ex.getMessage(), LocalDateTime.now());
