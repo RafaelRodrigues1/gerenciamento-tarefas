@@ -19,7 +19,7 @@ public class TarefaAdicaoRequest implements Request {
 
     private String descricao;
 
-    private LocalDate prazo;
+    private String prazo;
 
     private Long departamento;
 

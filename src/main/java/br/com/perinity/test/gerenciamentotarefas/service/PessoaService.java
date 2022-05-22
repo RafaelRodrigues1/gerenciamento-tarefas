@@ -30,17 +30,15 @@ public class PessoaService {
     @Autowired
     DepartamentoRepository departamentoRepository;
 
-    private PessoaRequestConverter pessoaConverter;
+    private PessoaRequestConverter pessoaConverter = new PessoaRequestConverter();;
 
     public Pessoa adicionaPessoa(PessoaRequest pessoaASerSalva) {
-        this.pessoaConverter = new PessoaRequestConverter();
         Pessoa pessoa = this.pessoaConverter.convertToModel(pessoaASerSalva);
         pessoa = this.pessoaRepository.save(pessoa);
         return this.findById(pessoa.getId());
     }
 
     public Pessoa alteraPessoa(Long id, PessoaRequest pessoaDadosNovos) {
-        this.pessoaConverter = new PessoaRequestConverter();
         this.verificaSeExiste(id);
         Pessoa pessoa = this.pessoaConverter.convertToModel(pessoaDadosNovos);
         pessoa.setId(id);
@@ -73,13 +71,13 @@ public class PessoaService {
     public List<PessoaMediaGastoHorasResponse> listaPessoasMediaGastoHoras(String nomePesquisa, LocalDate dataInicio, LocalDate dataFinal) {
         PessoaMediaGastoHorasConverter pessoaConverter = new PessoaMediaGastoHorasConverter();
         List<Pessoa> pessoas = this.pessoaRepository.findByNomeContainsIgnoreCase(nomePesquisa);
-        pessoas.stream().map(pessoa -> {
+        pessoas = pessoas.stream().map(pessoa -> {
             pessoa.setTarefas(pessoa.getTarefas()
                     .stream()
                     .filter(tarefa -> tarefa.getPrazo().compareTo(dataInicio) > 0 && tarefa.getPrazo().compareTo(dataFinal) < 0)
                     .collect(Collectors.toList()));
             return pessoa;
-        });
+            }).collect(Collectors.toList());
         return pessoas.stream().map(pessoaConverter::convertToResponse).collect(Collectors.toList());
     }
 

@@ -24,7 +24,7 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
             "WHERE ID_PESSOA IS NULL " +
             "ORDER BY PRAZO " +
             "LIMIT :limiteBusca ", nativeQuery = true)
-    List<Tarefa> findTresTarefasSemPessoaAlocadaPrazosAntigos(@Param("limiteBusca") int limiteBusca);
+    List<Tarefa> findTarefasSemPessoaAlocadaPrazosAntigos(@Param("limiteBusca") int limiteBusca);
 
     @Modifying
     @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -34,4 +34,9 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
                         @Param("prazo") LocalDate prazo, @Param("idDepartamento") Long idDepartamento,
                         @Param("duracao") Long duracao, @Param("idPessoa") Long idPessoa,
                         @Param("finalizado") Boolean finalizado);
+
+    @Modifying
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Query(value = "UPDATE TAREFA SET ID_PESSOA = :idPessoa WHERE ID = :id")
+    void alocaPessoaTarefaMesmoDepartamento(@Param("idPessoa") Long idPessoa, @Param("id") Long id);
 }

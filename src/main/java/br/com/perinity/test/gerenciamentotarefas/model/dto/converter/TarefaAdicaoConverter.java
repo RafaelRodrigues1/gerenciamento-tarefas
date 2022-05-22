@@ -5,6 +5,9 @@ import br.com.perinity.test.gerenciamentotarefas.model.Pessoa;
 import br.com.perinity.test.gerenciamentotarefas.model.Tarefa;
 import br.com.perinity.test.gerenciamentotarefas.model.dto.request.TarefaAdicaoRequest;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class TarefaAdicaoConverter implements ConverterRequest<Tarefa, TarefaAdicaoRequest> {
 
     @Override
@@ -12,7 +15,7 @@ public class TarefaAdicaoConverter implements ConverterRequest<Tarefa, TarefaAdi
         Tarefa model = Tarefa.builder()
                             .titulo(request.getTitulo())
                             .descricao(request.getDescricao())
-                            .prazo(request.getPrazo())
+                            .prazo(LocalDate.parse(request.getPrazo(), DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                             .departamento(Departamento.builder().id(request.getDepartamento()).build())
                             .duracao(request.getDuracao())
                             .pessoaAlocada(Pessoa.builder().id(request.getPessoaAlocada()).build())
